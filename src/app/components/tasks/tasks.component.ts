@@ -15,7 +15,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     // define props to use within the component
-    this.tasks = this.taskService.getTasks();
+    this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks);
   }
 
   tasks: Task[] = [];
