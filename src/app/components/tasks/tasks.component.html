@@ -1,1 +1,2 @@
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
 <app-task-item (onToggleTask) = "toggleTask(task)" *ngFor="let task of tasks" [task]="task" (onDeleteTask)="deleteTask(task)"></app-task-item>
