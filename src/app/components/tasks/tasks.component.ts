@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from "../../Task";
 import { TaskService } from "../../services/task.service"
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-tasks',
@@ -24,5 +25,10 @@ export class TasksComponent implements OnInit {
       .subscribe(
         () => (this.tasks = this.tasks.filter((t) => t.id !== task.id))
       );
+  }
+
+  toggleTask(task: Task){
+    task.reminder = !task.reminder;
+    this.taskService.updateTaskRemainder(task).subscribe();
   }
 }
