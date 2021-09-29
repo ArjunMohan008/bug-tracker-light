@@ -11,7 +11,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
 
-  // define taskService
+  // dependency injection -> define the needed services
   constructor(private taskService:TaskService) { }
 
   ngOnInit(): void {

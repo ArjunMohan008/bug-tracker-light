@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UiService } from "../../services/ui.service"
 
 @Component({
   selector: 'app-header',
@@ -6,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  title:string = 'Bug tracker';
+  showAddTask: boolean = false;
+  subscription: Subscription;
 
-  constructor() { }
+  constructor( private uiService:UiService) {
+    this.subscription = uiService.onToggle().subscribe((value)=> this.showAddTask = value)
+   }
 
   ngOnInit(): void {
   }
 
-  title:string = 'Bug tracker';
-
   toggleAddTaskBtn(){
-    console.log("Handle from parent component");
+    this.uiService.toggleShowAddTask();
   }
-
 }
